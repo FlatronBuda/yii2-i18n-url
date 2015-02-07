@@ -9,6 +9,7 @@ namespace pheme\i18n\widgets;
 
 use yii\bootstrap\ButtonDropdown;
 use yii\helpers\ArrayHelper;
+use yii\helpers\Url;
 use Yii;
 
 /**
@@ -34,7 +35,7 @@ class LanguageSwitcher extends ButtonDropdown
             $currentUrl = preg_replace('/' . Yii::$app->language . '\//', '', Yii::$app->getRequest()->getUrl(), 1);
             $isAssociative = ArrayHelper::isAssociative($languages);
             foreach ($languages as $language => $code) {
-                $url = $code . $currentUrl;
+                $url = Url::to($code . $currentUrl, true);
                 if ($isAssociative) {
                     $item = ['label' => $language, 'url' => $url];
                 } else {
